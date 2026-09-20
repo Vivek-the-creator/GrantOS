@@ -1,0 +1,32 @@
+{
+  "name": "grantos-monorepo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Programmable Public-Fund Infrastructure Platform",
+  "workspaces": [
+    "frontend",
+    "backend",
+    "blockchain"
+  ],
+  "scripts": {
+    "dev:frontend": "npm run dev --workspace=frontend",
+    "dev:web": "npm run dev --workspace=frontend",
+    "build:frontend": "npm run build --workspace=frontend",
+    "start:frontend": "npm run start --workspace=frontend",
+    "dev:backend": "cd backend && python -m uvicorn app.main:app --reload --port 8000",
+    "dev:api": "cd backend && python -m uvicorn app.main:app --reload --port 8000",
+    "test:blockchain": "npm run test --workspace=blockchain",
+    "compile:blockchain": "npm run compile --workspace=blockchain"
+  },
+  "keywords": [
+    "grant-management",
+    "programmable-grants",
+    "policy-engine",
+    "blockchain-audit",
+    "fastapi",
+    "nextjs",
+    "hardhat"
+  ],
+  "author": "GrantOS Team",
+  "license": "MIT"
+}
