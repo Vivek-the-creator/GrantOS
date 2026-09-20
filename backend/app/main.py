@@ -1,11 +1,12 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.core.config import settings
+from app.api.health import router as health_router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
     version=settings.VERSION,
-    description="Programmable Public-Fund Infrastructure API Service"
+    description="Programmable Public-Fund Infrastructure API Service",
 )
 
 # Configure CORS Middleware
@@ -17,19 +18,8 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-
-@app.get("/health", tags=["Health"])
-async def health_check():
-    """
-    Phase 1 Health Check Endpoint
-    Verifies that the FastAPI backend engine is active and reachable.
-    """
-    return {
-        "status": "ok",
-        "service": settings.PROJECT_NAME,
-        "phase": 1,
-        "version": settings.VERSION
-    }
+# Register Routers
+app.include_router(health_router)
 
 
 if __name__ == "__main__":
